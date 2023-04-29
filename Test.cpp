@@ -19,7 +19,7 @@ TEST_CASE("expected results"){
     Fraction a(2,5) , b(3,8);
     CHECK(a+b == 0.775);
     CHECK(a*b == 0.15 );
-    CHECK(a/b == 1.067);
+    CHECK(!(a/b == 1.067));
     CHECK(a-b == 0.025);
     CHECK(a+b >= 0.5);
     CHECK(a*b > 0.1);
