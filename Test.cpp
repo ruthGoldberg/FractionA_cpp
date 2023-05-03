@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include "sources/Fraction.hpp"
 #include <sstream>
+#include <climits>
 using namespace std;
 using namespace ariel;
 
@@ -36,6 +37,7 @@ TEST_CASE(" ++ -- overloading"){
     CHECK_EQ(--c , 0);
     
 }
+
 TEST_CASE(" > >= < <= overloading"){
     Fraction a(1,5) , b(3,-8) , c(1,1) , d(0.25);
     CHECK(a < c);
@@ -44,6 +46,7 @@ TEST_CASE(" > >= < <= overloading"){
     CHECK(c >= 1);
     
 }
+
 TEST_CASE("output format checking"){
     std::stringstream output;
     Fraction a(2, 5) ,b(5,-3);
@@ -71,10 +74,26 @@ TEST_CASE("valid input checking"){
     CHECK_THROWS(input >> a);
 }
 
-TEST_CASE("gcd function checking"){
+TEST_CASE("gcd and reduction function checking"){
     
     Fraction a(2,6) , b(80,50) , c(17,5);
     CHECK_EQ(a, Fraction(1,3));
     CHECK_EQ(b, Fraction(8,5));
     CHECK_EQ(c, Fraction(17,5));
+    CHECK_EQ(-0.001, Fraction(1000,-1000000));
+    CHECK_EQ(25, Fraction(100,4));
+    CHECK_EQ(-3, Fraction(300,-100));
+}
+
+TEST_CASE("toFloat function checking"){
+   Fraction a(2,6) , b(80,50) , c(17,-15);
+   CHECK_EQ(a.toFloat() ,(float)0.333 );
+   CHECK_EQ(b.toFloat() ,(float)1.6 );
+   CHECK_EQ(c.toFloat() ,(float)-1.133 );
+}
+
+TEST_CASE("check_overflow function checking"){
+    Fraction a(INT_MAX , 1) , b(INT_MIN,1);
+    CHECK_THROWS(a+1);
+    CHECK_THROWS(b-1);
 }
