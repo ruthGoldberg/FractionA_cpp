@@ -1,73 +1,73 @@
 #pragma once
 #include <iostream>
-using namespace std;
 namespace ariel{
     class Fraction{
+    private:
         int numerator;
         int denominator;
-
+        void reduction ();
     public:
-        Fraction(int numerator , int denominator){
-            this->numerator = numerator;
-            this->denominator = denominator;
-        }
-        Fraction operator+ (const Fraction& other)const{return *this;}
-        Fraction operator+ (const float number)const{return *this;}
+        Fraction();
+        Fraction(int numerator , int denominator);
+        Fraction(float decimal);
+        
+        float toFloat()const;
+
+        Fraction operator+ (const Fraction& other)const;
+        Fraction operator+ (float number)const;
         friend Fraction operator+ (float number, const Fraction& other);
 
-        Fraction operator- (const Fraction& other)const{return *this;}
-        Fraction operator- (const float number)const{return *this;}
+        Fraction operator- (const Fraction& other)const;
+        Fraction operator- (float number)const;
         friend Fraction operator- (float number, const Fraction& other);
 
-        Fraction operator/ (const Fraction& other)const{return *this;}
-        Fraction operator/ (const float number)const{return *this;}
+        Fraction operator/ (const Fraction& other)const;
+        Fraction operator/ (float number)const;
         friend Fraction operator/ (float number, const Fraction& other);
 
-        Fraction operator* (const Fraction& other)const{return *this;}
-        Fraction operator* (const float number)const{return *this;}
+        Fraction operator* (const Fraction& other)const;
+        Fraction operator* (float number)const;
         friend Fraction operator * (float number, const Fraction& other);
 
-        bool operator>= (const Fraction& other)const{return true;}
-        bool operator>= (float number)const{return true;}
+        bool operator>= (const Fraction& other)const;
+        bool operator>= (float number)const;
         friend bool operator>= (float number, const Fraction& other);
 
-        bool operator> (const Fraction& other)const{return true;}
-        bool operator> (const float number)const{return true;}
+        bool operator> (const Fraction& other)const;
+        bool operator> (float number)const;
         friend bool operator> (float number, const Fraction& other);
 
-        bool operator<= (const Fraction& other)const{return true;}
-        bool operator<=(const float number)const{return true;}
+        bool operator<= (const Fraction& other)const;
+        bool operator<=(float number)const;
         friend bool operator<= (float number, const Fraction& other);
 
-        bool operator< (const Fraction& other)const{return true;}
-        bool operator<(const float number)const{return true;}
+        bool operator< (const Fraction& other)const;
+        bool operator<(float number)const;
         friend bool operator< (float number, const Fraction& other);
 
-        bool operator == (const Fraction& other)const{return true;}
-        bool operator==(const float number)const{return true;}
+        bool operator == (const Fraction& other)const;
+        bool operator==(float number)const;
         friend bool operator== (float number, const Fraction& other);
       
-        Fraction operator-- (){
-            return *this;
-        }
-        Fraction operator-- (int){
-            return *this;
-        }
-        Fraction operator++ (){
-            return *this;
-        }
-        Fraction operator++ (int)
-        {return *this;}
+        bool operator != (const Fraction& other)const;
+        bool operator!=(float number)const;
+        friend bool operator!= (float number, const Fraction& other);
 
+        Fraction operator-- ();
+        Fraction operator-- (int);
+        Fraction operator++ ();
+        Fraction operator++ (int);
+
+        //friend float toFloat(const Fraction& fraction);
         friend std::ostream& operator<< (std::ostream& output, const Fraction& fraction);
-        
-        int getNum()const{
+        int getNumerator()const{
             return numerator;
         }
 
-        int getdeno()const{
+        int getDenominator()const{
             return denominator;
         }
 
+        friend std::istream& operator>>(std::istream& input, Fraction& fraction);
     };
 }
